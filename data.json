@@ -1,0 +1,119 @@
+{
+  "couple": {
+    "names": "Luna & Gabi",
+    "metDate": "2023-05-20",
+    "startDate": "2023-10-01",
+    "heroTitle": "我们的恋爱手帐",
+    "heroSubtitle": "把每一个喜欢的瞬间，收藏成可翻阅的记忆。"
+  },
+  "timeline": [
+    {
+      "date": "2023-05-20",
+      "title": "第一次相识",
+      "detail": "在那天的黄昏里，说了第一句对话。"
+    },
+    {
+      "date": "2023-08-12",
+      "title": "第一次旅行",
+      "detail": "一起看海，一起吃夜宵。"
+    },
+    {
+      "date": "2023-10-01",
+      "title": "正式在一起",
+      "detail": "从那天起，开始把每一天都写进未来。"
+    }
+  ],
+  "stories": [
+    {
+      "title": "雨天的小伞",
+      "text": "雨突然很大，你把伞偏向了我，自己的肩膀却湿了。"
+    },
+    {
+      "title": "深夜的电话",
+      "text": "那次聊到凌晨三点，我们都不舍得挂断。"
+    },
+    {
+      "title": "第一次做饭",
+      "text": "锅里有点糊，但笑得很甜。"
+    }
+  ],
+  "photos": [
+    {
+      "src": "assets/photo-1.jpg",
+      "caption": "第一次旅行"
+    },
+    {
+      "src": "assets/photo-2.jpg",
+      "caption": "某个周末"
+    },
+    {
+      "src": "assets/photo-3.jpg",
+      "caption": "一起看电影"
+    },
+    {
+      "src": "assets/photo-4.jpg",
+      "caption": "纪念日"
+    }
+  ],
+  "anniversaries": [
+    {
+      "title": "在一起一周年",
+      "date": "2024-10-01",
+      "note": "准备一个小惊喜"
+    },
+    {
+      "title": "下一次旅行",
+      "date": "2026-06-15",
+      "note": "去有星星的地方"
+    }
+  ],
+  "wishes": [
+    {
+      "title": "一起看一次流星雨",
+      "status": "进行中"
+    },
+    {
+      "title": "做一本实体相册",
+      "status": "想做"
+    },
+    {
+      "title": "每年互写一封信",
+      "status": "进行中"
+    }
+  ],
+  "songs": [
+    {
+      "title": "我们的主题曲",
+      "artist": "歌手名"
+    },
+    {
+      "title": "一起听过的歌",
+      "artist": "歌手名"
+    }
+  ],
+  "spanish": {
+    "qa": [
+      {
+        "question": "¿Cómo te llamas?",
+        "answer": "Me llamo Luna."
+      },
+      {
+        "question": "¿Qué hora es?",
+        "answer": "Son las ocho."
+      }
+    ],
+    "vocab": [
+      {
+        "word": "cariño",
+        "meaning": "亲爱的；爱意",
+        "note": "Te tengo mucho cariño."
+      },
+      {
+        "word": "viajar",
+        "meaning": "旅行",
+        "note": "Quiero viajar contigo."
+      }
+    ]
+  },
+  "smTasks": []
+}
