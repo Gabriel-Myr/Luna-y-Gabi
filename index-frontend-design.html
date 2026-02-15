@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Luna y Gabi - 我们的故事</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --rose-deep: #c4727a;
+      --rose-soft: #e8b4b8;
+      --rose-whisper: #f5e6e7;
+      --cream: #fdf8f3;
+      --ink: #2d2926;
+      --ink-soft: #5c5652;
+      --gold: #b8956e;
+      --gold-light: #d4b896;
+      --sage: #9caf88;
+      --lavender: #c9c5e8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+      line-height: 1.6;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(201, 197, 232, 0.35), transparent 45%),
+        radial-gradient(circle at 80% 10%, rgba(232, 180, 184, 0.35), transparent 40%),
+        radial-gradient(circle at 10% 80%, rgba(156, 175, 136, 0.25), transparent 45%),
+        repeating-linear-gradient(120deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.18) 2px, transparent 2px, transparent 8px);
+      opacity: 0.8;
+      z-index: -2;
+    }
+
+    .grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.4;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      z-index: 9999;
+    }
+
+    .floating-shapes {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.5;
+      animation: float 20s ease-in-out infinite;
+    }
+
+    .shape-1 {
+      width: 400px;
+      height: 400px;
+      background: var(--rose-soft);
+      top: -100px;
+      right: -100px;
+      animation-delay: 0s;
+    }
+
+    .shape-2 {
+      width: 300px;
+      height: 300px;
+      background: var(--lavender);
+      bottom: 20%;
+      left: -50px;
+      animation-delay: -5s;
+    }
+
+    .shape-3 {
+      width: 250px;
+      height: 250px;
+      background: var(--sage);
+      top: 50%;
+      right: 10%;
+      animation-delay: -10s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(30px, -30px) rotate(5deg); }
+      50% { transform: translate(-20px, 20px) rotate(-5deg); }
+      75% { transform: translate(20px, 10px) rotate(3deg); }
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--rose-whisper) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 28px;
+      background: linear-gradient(135deg, rgba(232, 180, 184, 0.8) 0%, rgba(245, 230, 231, 0.9) 100%);
+      border-radius: 100px;
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      letter-spacing: 2px;
+      color: var(--rose-deep);
+      margin-bottom: 40px;
+      animation: fadeInDown 1s ease-out;
+      box-shadow: 0 12px 36px rgba(196, 114, 122, 0.18);
+      border: 1px solid rgba(196, 114, 122, 0.2);
+    }
+
+    .hero-badge::before,
+    .hero-badge::after {
+      content: '♡';
+      font-size: 14px;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(48px, 12vw, 120px);
+      font-weight: 300;
+      letter-spacing: -2px;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      animation: fadeInUp 1s ease-out 0.2s both;
+    }
+
+    .hero-title span {
+      display: block;
+      font-style: italic;
+      color: var(--rose-deep);
+    }
+
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(18px, 3vw, 26px);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--ink-soft);
+      max-width: 500px;
+      margin-bottom: 60px;
+      animation: fadeInUp 1s ease-out 0.4s both;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeInUp 1s ease-out 0.6s both;
+    }
+
+    .meta-card {
+      padding: 24px 32px;
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      border: 1px solid rgba(196, 114, 122, 0.15);
+      min-width: 140px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .meta-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(196, 114, 122, 0.15);
+      border-color: var(--rose-soft);
+    }
+
+    .meta-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 20%, rgba(232, 180, 184, 0.18), transparent 80%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .meta-card:hover::after {
+      opacity: 1;
+    }
+
+    .meta-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--ink-soft);
+      margin-bottom: 8px;
+    }
+
+    .meta-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--rose-deep);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px 100px;
+    }
+
+    .section {
+      margin-top: 120px;
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+      position: relative;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--gold);
+      margin-bottom: 16px;
+      padding: 8px 20px;
+      border: 1px solid var(--gold-light);
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 6vw, 56px);
+      font-weight: 400;
+      letter-spacing: -1px;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 120px;
+      height: 2px;
+      margin: 18px auto 0;
+      background: linear-gradient(to right, transparent, var(--rose-soft), transparent);
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 60px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--rose-soft), var(--lavender));
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 48px;
+      padding: 32px;
+      background: rgba(255, 255, 255, 0.86);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      border: 1px solid rgba(196, 114, 122, 0.1);
+      transition: all 0.4s ease;
+      box-shadow: 0 12px 32px rgba(196, 114, 122, 0.08);
+    }
+
+    .timeline-item:hover {
+      transform: translateX(12px);
+      box-shadow: 0 16px 48px rgba(196, 114, 122, 0.12);
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -52px;
+      top: 40px;
+      width: 16px;
+      height: 16px;
+      background: var(--rose-deep);
+      border-radius: 50%;
+      border: 4px solid var(--cream);
+      box-shadow: 0 0 0 4px var(--rose-soft);
+    }
+
+    .timeline-date {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .timeline-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .timeline-detail {
+      color: var(--ink-soft);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+    }
+
+    .story-card {
+      padding: 40px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 230, 231, 0.6) 100%);
+      border-radius: 32px;
+      border: 1px solid rgba(196, 114, 122, 0.12);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      box-shadow: 0 16px 40px rgba(196, 114, 122, 0.1);
+    }
+
+    .story-card::before {
+      content: '"';
+      position: absolute;
+      top: 20px;
+      left: 24px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 120px;
+      color: var(--rose-soft);
+      opacity: 0.3;
+      line-height: 1;
+    }
+
+    .story-card:hover {
+      transform: translateY(-8px) rotate(-1deg);
+      box-shadow: 0 24px 64px rgba(196, 114, 122, 0.15);
+    }
+
+    .story-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .story-card p {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--ink-soft);
+      position: relative;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+    }
+
+    .photo-item {
+      aspect-ratio: 3/4;
+      border-radius: 26px;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(135deg, rgba(245, 230, 231, 0.9) 0%, rgba(201, 197, 232, 0.9) 100%);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 12px;
+      box-shadow: 0 18px 48px rgba(196, 114, 122, 0.12);
+    }
+
+    .photo-item:hover {
+      transform: scale(1.03);
+      box-shadow: 0 24px 48px rgba(196, 114, 122, 0.2);
+    }
+
+    .photo-item::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      pointer-events: none;
+    }
+
+    .photo-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      border-radius: 18px;
+    }
+
+    .photo-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .photo-item span {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 34px 18px 16px;
+      background: linear-gradient(to top, rgba(45, 41, 38, 0.78), transparent);
+      color: #fffaf5;
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+    }
+
+    .anniversary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+    }
+
+    .anniversary-card {
+      padding: 36px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(201, 197, 232, 0.2) 100%);
+      border-radius: 28px;
+      border: 1px solid rgba(184, 149, 110, 0.15);
+      text-align: center;
+      transition: all 0.4s ease;
+      box-shadow: 0 12px 32px rgba(184, 149, 110, 0.1);
+    }
+
+    .anniversary-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(184, 149, 110, 0.12);
+    }
+
+    .anniversary-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .anniversary-card .date {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .anniversary-card .countdown {
+      font-size: 14px;
+      color: var(--rose-deep);
+      padding: 8px 20px;
+      background: var(--rose-whisper);
+      border-radius: 100px;
+      display: inline-block;
+      margin-top: 12px;
+    }
+
+    .wish-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .wish-card {
+      padding: 32px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 24px;
+      border: 1px solid rgba(156, 175, 136, 0.2);
+      position: relative;
+      transition: all 0.4s ease;
+      box-shadow: 0 12px 28px rgba(156, 175, 136, 0.08);
+    }
+
+    .wish-card::before {
+      content: '✧';
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      font-size: 24px;
+      color: var(--gold);
+    }
+
+    .wish-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--sage);
+    }
+
+    .wish-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      margin-bottom: 12px;
+      padding-right: 30px;
+    }
+
+    .wish-status {
+      font-size: 13px;
+      color: var(--sage);
+      padding: 6px 16px;
+      background: rgba(156, 175, 136, 0.15);
+      border-radius: 100px;
+      display: inline-block;
+    }
+
+    .song-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .song-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 24px;
+      background: rgba(255, 255, 255, 0.86);
+      border-radius: 20px;
+      border: 1px solid rgba(196, 114, 122, 0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 10px 28px rgba(196, 114, 122, 0.08);
+    }
+
+    .song-item:hover {
+      background: rgba(255, 255, 255, 1);
+      transform: translateX(8px);
+    }
+
+    .song-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--rose-soft) 0%, var(--lavender) 100%);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .song-info h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .song-info p {
+      font-size: 14px;
+      color: var(--ink-soft);
+    }
+
+    .spanish-section {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(245, 230, 231, 0.4) 100%);
+      border-radius: 40px;
+      padding: 60px;
+      border: 1px solid rgba(196, 114, 122, 0.1);
+      box-shadow: 0 20px 50px rgba(196, 114, 122, 0.08);
+    }
+
+    .spanish-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+    }
+
+    .spanish-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--rose-soft);
+    }
+
+    .qa-item, .vocab-item {
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 16px;
+      margin-bottom: 16px;
+      border-left: 3px solid var(--rose-deep);
+    }
+
+    .qa-item h4, .vocab-item h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-style: italic;
+      color: var(--rose-deep);
+      margin-bottom: 8px;
+    }
+
+    .qa-item p, .vocab-item p {
+      font-size: 15px;
+      color: var(--ink-soft);
+    }
+
+    .ask-box {
+      margin-top: 24px;
+    }
+
+    .ask-box input,
+    .ask-box textarea {
+      width: 100%;
+      padding: 16px 20px;
+      border: 1px solid rgba(196, 114, 122, 0.2);
+      border-radius: 16px;
+      font-family: inherit;
+      font-size: 15px;
+      background: rgba(255, 255, 255, 0.9);
+      margin-bottom: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .ask-box input:focus,
+    .ask-box textarea:focus {
+      outline: none;
+      border-color: var(--rose-deep);
+      box-shadow: 0 0 0 4px rgba(196, 114, 122, 0.1);
+    }
+
+    .ask-box button {
+      padding: 14px 32px;
+      background: linear-gradient(135deg, var(--rose-deep) 0%, var(--rose-soft) 100%);
+      color: white;
+      border: none;
+      border-radius: 100px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .ask-box button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(196, 114, 122, 0.3);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 80px 20px;
+      background: linear-gradient(to top, var(--rose-whisper), transparent);
+    }
+
+    .footer p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-style: italic;
+      color: var(--ink-soft);
+    }
+
+    @media (max-width: 768px) {
+      .timeline {
+        padding-left: 40px;
+      }
+
+      .timeline::before {
+        left: 10px;
+      }
+
+      .timeline-item::before {
+        left: -38px;
+        width: 12px;
+        height: 12px;
+      }
+
+      .spanish-section {
+        padding: 32px 24px;
+        border-radius: 24px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="grain"></div>
+  <div class="floating-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+  </div>
+
+  <header class="hero">
+    <div class="hero-badge">Luna y Gabi</div>
+    <h1 class="hero-title">
+      我们的故事
+      <span>Nuestro amor</span>
+    </h1>
+    <p class="hero-subtitle">把每一个喜欢的瞬间，收藏成可翻阅的记忆</p>
+    <div class="hero-meta">
+      <div class="meta-card">
+        <div class="meta-label">相识</div>
+        <div class="meta-value">2025.10.07 17:27</div>
+      </div>
+
+      <div class="meta-card">
+        <div class="meta-label">已经</div>
+        <div class="meta-value" id="days">0 天 00:00:00</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="timeline">
+      <div class="section-header">
+        <span class="section-tag">Timeline</span>
+        <h2 class="section-title">Gabi的回忆时间线</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">2025年9月28日</div>
+          <h3 class="timeline-title">第一次相识</h3>
+          <p class="timeline-detail">推特的私信里跳出了你的头像，当时只道是寻常。</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2025年10月7日</div>
+          <h3 class="timeline-title">在一起</h3>
+          <p class="timeline-detail">私信里跳出了你的头像。“拍一拍”，我知道，故事开始了。</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2025年11月12日</div>
+          <h3 class="timeline-title">第一次见面</h3>
+          <p class="timeline-detail">你像梦一样出现在北京。我像个不知所措又兴奋的孩子，小心翼翼地靠近你。</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2025年12月26日</div>
+          <h3 class="timeline-title">同居的开始</h3>
+          <p class="timeline-detail">我走出虹桥火车站，你拿着花向我跑来。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="stories">
+      <div class="section-header">
+        <span class="section-tag">Stories</span>
+        <h2 class="section-title">小故事</h2>
+      </div>
+      <div class="story-grid">
+        <article class="story-card">
+          <h3>第一次给对方做饭</h3>
+          <p>Gabi 的米饭有点糊，但 Luna 爱吃。Luna 的鸡翅很难忘，厨房里的身影是我们“家”的具象化。</p>
+        </article>
+        <article class="story-card">
+          <h3>西语的争执</h3>
+          <p>Luna 的问题总是多多，Gabi 最开始当不好那个耐心的老师。但她认真坚持的模样被他看在心里，多邻国也一日不落。</p>
+        </article>
+        <article class="story-card">
+          <h3>第一次做饭</h3>
+          <p>锅里有点糊，但笑得很甜。我们决定以后要一起做很多顿饭。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="photos">
+      <div class="section-header">
+        <span class="section-tag">Gallery</span>
+        <h2 class="section-title">照片墙</h2>
+      </div>
+      <div class="photo-grid">
+        <div class="photo-item">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#e8b4b8,#c9c5e8)"></div>
+          <span>第一次旅行</span>
+        </div>
+        <div class="photo-item">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#c9c5e8,#9caf88)"></div>
+          <span>某个周末</span>
+        </div>
+        <div class="photo-item">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#9caf88,#e8b4b8)"></div>
+          <span>一起看电影</span>
+        </div>
+        <div class="photo-item">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#d4b896,#e8b4b8)"></div>
+          <span>纪念日</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="anniversary">
+      <div class="section-header">
+        <span class="section-tag">Countdown</span>
+        <h2 class="section-title">纪念日倒计时</h2>
+      </div>
+      <div class="anniversary-grid">
+        <div class="anniversary-card">
+          <h3>距离上次见面</h3>
+          <div class="date">2026年1月31日</div>
+          <span class="countdown" id="last-meet">已过去 0 天</span>
+        </div>
+        <div class="anniversary-card">
+          <h3>下次见面</h3>
+          <div class="date">待定</div>
+          <span class="countdown">待定</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="wishes">
+      <div class="section-header">
+        <span class="section-tag">Wishlist</span>
+        <h2 class="section-title">我们的心愿清单</h2>
+      </div>
+      <div class="wish-grid">
+        <div class="wish-card">
+          <h3>一起做面点</h3>
+          <span class="wish-status">待实现</span>
+        </div>
+        <div class="wish-card">
+          <h3>一起听古典音乐会</h3>
+          <span class="wish-status">待实现</span>
+        </div>
+        <div class="wish-card">
+          <h3>一起去某个艺术馆/美术馆</h3>
+          <span class="wish-status">待实现</span>
+        </div>
+        <div class="wish-card">
+          <h3>给 Luna 展示咖啡拉花</h3>
+          <span class="wish-status">待实现</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="playlist">
+      <div class="section-header">
+        <span class="section-tag">Playlist</span>
+        <h2 class="section-title">专属歌单</h2>
+      </div>
+      <div class="song-list">
+        <div class="song-item">
+          <div class="song-icon">♪</div>
+          <div class="song-info">
+            <h4>我们的主题曲</h4>
+            <p>歌手名</p>
+          </div>
+        </div>
+        <div class="song-item">
+          <div class="song-icon">♪</div>
+          <div class="song-info">
+            <h4>一起听过的歌</h4>
+            <p>歌手名</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="spanish">
+      <div class="section-header">
+        <span class="section-tag">Spanish</span>
+        <h2 class="section-title">西语学习</h2>
+      </div>
+      <div class="spanish-section">
+        <div class="spanish-grid">
+          <div class="spanish-card">
+            <h3>问题 & 回答</h3>
+            <div class="qa-item">
+              <h4>¿Cómo te llamas?</h4>
+              <p>Me llamo Luna.</p>
+            </div>
+            <div class="qa-item">
+              <h4>¿Qué hora es?</h4>
+              <p>Son las ocho.</p>
+            </div>
+            <div class="ask-box">
+              <input type="text" placeholder="你的昵称" maxlength="20">
+              <textarea placeholder="写下你的问题…" rows="3" maxlength="200"></textarea>
+              <button type="button">保存问题</button>
+            </div>
+          </div>
+          <div class="spanish-card">
+            <h3>生词本</h3>
+            <div class="vocab-item">
+              <h4>cariño</h4>
+              <p>亲爱的；爱意</p>
+              <p style="font-style:italic;margin-top:8px">Te tengo mucho cariño.</p>
+            </div>
+            <div class="vocab-item">
+              <h4>viajar</h4>
+              <p>旅行</p>
+              <p style="font-style:italic;margin-top:8px">Quiero viajar contigo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>我们的小小宇宙 · 由我们一起完成 ♡</p>
+  </footer>
+
+  <script>
+    const startDate = new Date(2025, 9, 7, 17, 27, 0);
+    const timerEl = document.getElementById('days');
+
+    const pad = (value) => String(value).padStart(2, '0');
+    const updateElapsed = () => {
+      const now = new Date();
+      let diff = Math.floor((now - startDate) / 1000);
+      if (diff < 0) diff = 0;
+
+      const days = Math.floor(diff / 86400);
+      diff %= 86400;
+      const hours = Math.floor(diff / 3600);
+      diff %= 3600;
+      const minutes = Math.floor(diff / 60);
+      const seconds = diff % 60;
+
+      timerEl.textContent = `${days} 天 ${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+    };
+
+    updateElapsed();
+    setInterval(updateElapsed, 1000);
+
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    sections.forEach(section => observer.observe(section));
+
+    const lastMeetDate = new Date(2026, 0, 31);
+    const lastMeetEl = document.getElementById('last-meet');
+    if (lastMeetEl) {
+      const now = new Date();
+      let diffDays = Math.floor((now - lastMeetDate) / (1000 * 60 * 60 * 24));
+      if (diffDays < 0) diffDays = 0;
+      lastMeetEl.textContent = `已过去 ${diffDays} 天`;
+    }
+  </script>
+</body>
+</html>

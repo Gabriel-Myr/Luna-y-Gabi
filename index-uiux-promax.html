@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Luna y Gabi - 我们的恋爱手帐</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;500;600;700&family=Varela+Round&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #DB2777;
+      --primary-light: #F472B6;
+      --primary-dark: #BE185D;
+      --cta: #CA8A04;
+      --cta-light: #EAB308;
+      --background: #FDF2F8;
+      --background-alt: #FCE7F3;
+      --text: #831843;
+      --text-muted: #9D174D;
+      --text-dark: #500724;
+      --white: #FFFFFF;
+      --gray-50: #FAFAFA;
+      --gray-100: #F4F4F5;
+      --gray-200: #E4E4E7;
+      --gray-300: #D4D4D8;
+      --gray-500: #71717A;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+      --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+      --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      --shadow-soft: 0 8px 32px rgba(219, 39, 119, 0.12);
+      --shadow-soft-lg: 0 16px 48px rgba(219, 39, 119, 0.15);
+      --radius-sm: 8px;
+      --radius: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --radius-2xl: 32px;
+      --radius-full: 9999px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Nunito Sans', sans-serif;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .nav {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      right: 16px;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      border-radius: var(--radius-xl);
+      padding: 16px 32px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(219, 39, 119, 0.1);
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-family: 'Varela Round', sans-serif;
+      font-size: 20px;
+      color: var(--primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-logo svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 14px;
+      transition: color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, var(--primary-light) 0%, transparent 70%);
+      opacity: 0.2;
+      animation: pulse 8s ease-in-out infinite;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--cta-light) 0%, transparent 70%);
+      opacity: 0.15;
+      animation: pulse 10s ease-in-out infinite reverse;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.2; }
+      50% { transform: scale(1.1); opacity: 0.3; }
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-text {
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      background: var(--white);
+      border-radius: var(--radius-full);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero-badge svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--primary);
+    }
+
+    .hero-title {
+      font-family: 'Varela Round', sans-serif;
+      font-size: clamp(36px, 5vw, 56px);
+      line-height: 1.2;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+    }
+
+    .hero-title span {
+      color: var(--primary);
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      max-width: 480px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .stat-card {
+      padding: 20px 28px;
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(219, 39, 119, 0.08);
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-soft-lg);
+    }
+
+    .stat-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .stat-value {
+      font-family: 'Varela Round', sans-serif;
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .hero-visual {
+      position: relative;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    .hero-card {
+      background: var(--white);
+      border-radius: var(--radius-2xl);
+      padding: 40px;
+      box-shadow: var(--shadow-xl);
+      border: 1px solid rgba(219, 39, 119, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--cta));
+    }
+
+    .hero-card-title {
+      font-family: 'Varela Round', sans-serif;
+      font-size: 20px;
+      color: var(--text-dark);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-card-title svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--primary);
+    }
+
+    .memory-item {
+      display: flex;
+      gap: 16px;
+      padding: 16px;
+      background: var(--background);
+      border-radius: var(--radius-lg);
+      margin-bottom: 12px;
+      transition: all 0.2s ease;
+    }
+
+    .memory-item:hover {
+      background: var(--background-alt);
+    }
+
+    .memory-date {
+      font-size: 13px;
+      color: var(--cta);
+      font-weight: 600;
+      min-width: 80px;
+    }
+
+    .memory-text {
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      padding: 8px 20px;
+      background: var(--white);
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--primary);
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .section-title {
+      font-family: 'Varela Round', sans-serif;
+      font-size: clamp(28px, 4vw, 40px);
+      color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+
+    .section-desc {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--primary-light), var(--cta-light));
+      border-radius: var(--radius-full);
+    }
+
+    .timeline-item {
+      display: flex;
+      justify-content: flex-end;
+      padding-right: calc(50% + 30px);
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .timeline-item:nth-child(even) {
+      justify-content: flex-start;
+      padding-right: 0;
+      padding-left: calc(50% + 30px);
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 24px;
+      width: 16px;
+      height: 16px;
+      background: var(--white);
+      border: 3px solid var(--primary);
+      border-radius: 50%;
+      box-shadow: var(--shadow);
+    }
+
+    .timeline-card {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(219, 39, 119, 0.08);
+      max-width: 340px;
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+
+    .timeline-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-soft-lg);
+    }
+
+    .timeline-date {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--cta);
+      margin-bottom: 8px;
+    }
+
+    .timeline-title {
+      font-family: 'Varela Round', sans-serif;
+      font-size: 18px;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .timeline-detail {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+    }
+
+    .story-card {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(219, 39, 119, 0.08);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .story-card::before {
+      content: '"';
+      position: absolute;
+      top: 16px;
+      right: 24px;
+      font-family: 'Varela Round', sans-serif;
+      font-size: 80px;
+      color: var(--primary-light);
+      opacity: 0.2;
+      line-height: 1;
+    }
+
+    .story-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-soft-lg);
+    }
+
+    .story-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--primary-light), var(--primary));
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .story-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--white);
+    }
+
+    .story-card h3 {
+      font-family: 'Varela Round', sans-serif;
+      font-size: 20px;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+
+    .story-card p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, 200px);
+      gap: 20px;
+    }
+
+    .photo-item {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(135deg, var(--primary-light), var(--cta-light));
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .photo-item:first-child {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .photo-item:hover {
+      transform: scale(1.02);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .photo-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(131, 24, 67, 0.8), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      align-items: flex-end;
+      padding: 20px;
+    }
+
+    .photo-item:hover .photo-overlay {
+      opacity: 1;
+    }
+
+    .photo-caption {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .anniversary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .anniversary-card {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      text-align: center;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(219, 39, 119, 0.08);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .anniversary-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--cta));
+    }
+
+    .anniversary-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-soft-lg);
+    }
+
+    .anniversary-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--background);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .anniversary-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--primary);
+    }
+
+    .anniversary-card h3 {
+      font-family: 'Varela Round', sans-serif;
+      font-size: 18px;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .anniversary-date {
+      font-size: 14px;
+      color: var(--cta);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .countdown-badge {
+      display: inline-block;
+      padding: 8px 20px;
+      background: var(--background);
+      border-radius: var(--radius-full);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .wish-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .wish-card {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(219, 39, 119, 0.08);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .wish-card:hover {
+      transform: translateX(8px);
+      box-shadow: var(--shadow-soft-lg);
+    }
+
+    .wish-check {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid var(--primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+
+    .wish-card:hover .wish-check {
+      background: var(--primary-light);
+    }
+
+    .wish-check svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--white);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .wish-card:hover .wish-check svg {
+      opacity: 1;
+    }
+
+    .wish-content h4 {
+      font-family: 'Varela Round', sans-serif;
+      font-size: 16px;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+
+    .wish-status {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .song-list {
+      display: grid;
+      gap: 16px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .song-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 24px;
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(219, 39, 119, 0.08);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .song-item:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-soft-lg);
+      border-color: var(--primary-light);
+    }
+
+    .song-cover {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, var(--primary-light), var(--cta-light));
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .song-cover svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--white);
+    }
+
+    .song-info {
+      flex: 1;
+    }
+
+    .song-title {
+      font-family: 'Varela Round', sans-serif;
+      font-size: 16px;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+
+    .song-artist {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .song-play {
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .song-item:hover .song-play {
+      transform: scale(1.1);
+    }
+
+    .song-play svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--white);
+      margin-left: 2px;
+    }
+
+    .spanish-section {
+      background: var(--white);
+      border-radius: var(--radius-2xl);
+      padding: 48px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(219, 39, 119, 0.08);
+    }
+
+    .spanish-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+    }
+
+    .spanish-card h3 {
+      font-family: 'Varela Round', sans-serif;
+      font-size: 20px;
+      color: var(--text-dark);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .spanish-card h3 svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--primary);
+    }
+
+    .qa-item, .vocab-item {
+      padding: 20px;
+      background: var(--background);
+      border-radius: var(--radius-lg);
+      margin-bottom: 12px;
+      border-left: 3px solid var(--primary);
+    }
+
+    .qa-question {
+      font-family: 'Varela Round', sans-serif;
+      font-size: 16px;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .qa-answer {
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .vocab-word {
+      font-family: 'Varela Round', sans-serif;
+      font-size: 18px;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .vocab-meaning {
+      font-size: 14px;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .vocab-example {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .ask-form {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .ask-form input,
+    .ask-form textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      font-family: inherit;
+      font-size: 14px;
+      background: var(--gray-50);
+      transition: all 0.2s ease;
+    }
+
+    .ask-form input:focus,
+    .ask-form textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: var(--white);
+      box-shadow: 0 0 0 4px rgba(219, 39, 119, 0.1);
+    }
+
+    .ask-form button {
+      padding: 14px 28px;
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius-full);
+      font-family: 'Varela Round', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      align-self: flex-start;
+    }
+
+    .ask-form button:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .footer {
+      padding: 60px 0;
+      text-align: center;
+      background: linear-gradient(to top, var(--background-alt), transparent);
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-family: 'Varela Round', sans-serif;
+      font-size: 24px;
+      color: var(--primary);
+    }
+
+    .footer-text {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .footer-hearts {
+      display: flex;
+      gap: 8px;
+    }
+
+    .footer-hearts svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--primary-light);
+    }
+
+    @media (max-width: 1024px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-subtitle {
+        margin: 0 auto 40px;
+      }
+
+      .hero-stats {
+        justify-content: center;
+      }
+
+      .hero-visual {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .timeline::before {
+        left: 20px;
+      }
+
+      .timeline-item,
+      .timeline-item:nth-child(even) {
+        padding-left: 60px;
+        padding-right: 0;
+        justify-content: flex-start;
+      }
+
+      .timeline-item::before {
+        left: 20px;
+      }
+
+      .photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+      }
+
+      .photo-item:first-child {
+        grid-column: span 2;
+        grid-row: span 1;
+        height: 250px;
+      }
+
+      .photo-item {
+        height: 180px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .section {
+        padding: 60px 0;
+      }
+
+      .spanish-section {
+        padding: 28px 20px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-content">
+      <a href="#" class="nav-logo">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+        Luna y Gabi
+      </a>
+      <ul class="nav-links">
+        <li><a href="#timeline">时间线</a></li>
+        <li><a href="#stories">故事</a></li>
+        <li><a href="#photos">照片</a></li>
+        <li><a href="#spanish">西语</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="hero-badge">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+            Luna y Gabi
+          </div>
+          <h1 class="hero-title">我们的<span>恋爱手帐</span></h1>
+          <p class="hero-subtitle">把每一个喜欢的瞬间，收藏成可翻阅的记忆。这是我们两个人的故事，也是未来的起点。</p>
+          <div class="hero-stats">
+            <div class="stat-card">
+              <div class="stat-label">相识</div>
+              <div class="stat-value">2023.05.20</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">在一起</div>
+              <div class="stat-value">2023.10.01</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">已经</div>
+              <div class="stat-value" id="days">865 天</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-card">
+            <div class="hero-card-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              最近回忆
+            </div>
+            <div class="memory-item">
+              <span class="memory-date">10月1日</span>
+              <span class="memory-text">正式在一起，开始把每一天写进未来</span>
+            </div>
+            <div class="memory-item">
+              <span class="memory-date">8月12日</span>
+              <span class="memory-text">第一次旅行，一起看海，一起吃夜宵</span>
+            </div>
+            <div class="memory-item">
+              <span class="memory-date">5月20日</span>
+              <span class="memory-text">第一次相识，黄昏里的第一句对话</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section class="section" id="timeline">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Timeline</span>
+          <h2 class="section-title">我们的时间线</h2>
+          <p class="section-desc">每一个重要的日子，都值得被记住</p>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-card">
+              <div class="timeline-date">2023年5月20日</div>
+              <h3 class="timeline-title">第一次相识</h3>
+              <p class="timeline-detail">在那天的黄昏里，说了第一句对话。阳光刚好落在你脸上，我知道，故事开始了。</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-card">
+              <div class="timeline-date">2023年8月12日</div>
+              <h3 class="timeline-title">第一次旅行</h3>
+              <p class="timeline-detail">一起看海，一起吃夜宵。海风很温柔，你也是。</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-card">
+              <div class="timeline-date">2023年10月1日</div>
+              <h3 class="timeline-title">正式在一起</h3>
+              <p class="timeline-detail">从那天起，开始把每一天都写进未来。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="stories">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Stories</span>
+          <h2 class="section-title">小故事</h2>
+          <p class="section-desc">那些温暖的瞬间，构成了我们的日常</p>
+        </div>
+        <div class="story-grid">
+          <article class="story-card">
+            <div class="story-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
+              </svg>
+            </div>
+            <h3>雨天的小伞</h3>
+            <p>雨突然很大，你把伞偏向了我，自己的肩膀却湿了。那一刻，我知道什么是被爱着。</p>
+          </article>
+          <article class="story-card">
+            <div class="story-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+              </svg>
+            </div>
+            <h3>深夜的电话</h3>
+            <p>那次聊到凌晨三点，我们都不舍得挂断。困意很重，但舍不得说晚安。</p>
+          </article>
+          <article class="story-card">
+            <div class="story-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+              </svg>
+            </div>
+            <h3>第一次做饭</h3>
+            <p>锅里有点糊，但笑得很甜。我们决定以后要一起做很多顿饭。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="photos">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Gallery</span>
+          <h2 class="section-title">照片墙</h2>
+          <p class="section-desc">定格每一个美好瞬间</p>
+        </div>
+        <div class="photo-grid">
+          <div class="photo-item">
+            <div style="width:100%;height:100%;background:linear-gradient(135deg,#F472B6,#EAB308)"></div>
+            <div class="photo-overlay">
+              <span class="photo-caption">第一次旅行</span>
+            </div>
+          </div>
+          <div class="photo-item">
+            <div style="width:100%;height:100%;background:linear-gradient(135deg,#EAB308,#F472B6)"></div>
+            <div class="photo-overlay">
+              <span class="photo-caption">某个周末</span>
+            </div>
+          </div>
+          <div class="photo-item">
+            <div style="width:100%;height:100%;background:linear-gradient(135deg,#DB2777,#CA8A04)"></div>
+            <div class="photo-overlay">
+              <span class="photo-caption">一起看电影</span>
+            </div>
+          </div>
+          <div class="photo-item">
+            <div style="width:100%;height:100%;background:linear-gradient(135deg,#CA8A04,#DB2777)"></div>
+            <div class="photo-overlay">
+              <span class="photo-caption">纪念日</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="anniversary">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Countdown</span>
+          <h2 class="section-title">纪念日倒计时</h2>
+          <p class="section-desc">期待每一个特别的日子</p>
+        </div>
+        <div class="anniversary-grid">
+          <div class="anniversary-card">
+            <div class="anniversary-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h3>在一起一周年</h3>
+            <div class="anniversary-date">2024年10月1日</div>
+            <span class="countdown-badge">已过去 135 天</span>
+          </div>
+          <div class="anniversary-card">
+            <div class="anniversary-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h3>下一次旅行</h3>
+            <div class="anniversary-date">2026年6月15日</div>
+            <span class="countdown-badge">还有 122 天</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="wishes">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Wishlist</span>
+          <h2 class="section-title">我们的心愿清单</h2>
+          <p class="section-desc">一起完成的小目标</p>
+        </div>
+        <div class="wish-grid">
+          <div class="wish-card">
+            <div class="wish-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <path d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <div class="wish-content">
+              <h4>一起看一次流星雨</h4>
+              <span class="wish-status">进行中</span>
+            </div>
+          </div>
+          <div class="wish-card">
+            <div class="wish-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <path d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <div class="wish-content">
+              <h4>做一本实体相册</h4>
+              <span class="wish-status">想做</span>
+            </div>
+          </div>
+          <div class="wish-card">
+            <div class="wish-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <path d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <div class="wish-content">
+              <h4>每年互写一封信</h4>
+              <span class="wish-status">进行中</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="playlist">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Playlist</span>
+          <h2 class="section-title">专属歌单</h2>
+          <p class="section-desc">每一首歌都有我们的故事</p>
+        </div>
+        <div class="song-list">
+          <div class="song-item">
+            <div class="song-cover">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+              </svg>
+            </div>
+            <div class="song-info">
+              <div class="song-title">我们的主题曲</div>
+              <div class="song-artist">歌手名</div>
+            </div>
+            <div class="song-play">
+              <svg viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="song-item">
+            <div class="song-cover">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+              </svg>
+            </div>
+            <div class="song-info">
+              <div class="song-title">一起听过的歌</div>
+              <div class="song-artist">歌手名</div>
+            </div>
+            <div class="song-play">
+              <svg viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="spanish">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Spanish</span>
+          <h2 class="section-title">西语学习</h2>
+          <p class="section-desc">一起学习，一起进步</p>
+        </div>
+        <div class="spanish-section">
+          <div class="spanish-grid">
+            <div class="spanish-card">
+              <h3>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                问题 & 回答
+              </h3>
+              <div class="qa-item">
+                <div class="qa-question">¿Cómo te llamas?</div>
+                <div class="qa-answer">Me llamo Luna.</div>
+              </div>
+              <div class="qa-item">
+                <div class="qa-question">¿Qué hora es?</div>
+                <div class="qa-answer">Son las ocho.</div>
+              </div>
+              <div class="ask-form">
+                <input type="text" placeholder="你的昵称" maxlength="20">
+                <textarea placeholder="写下你的问题…" rows="3" maxlength="200"></textarea>
+                <button type="button">保存问题</button>
+              </div>
+            </div>
+            <div class="spanish-card">
+              <h3>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                </svg>
+                生词本
+              </h3>
+              <div class="vocab-item">
+                <div class="vocab-word">cariño</div>
+                <div class="vocab-meaning">亲爱的；爱意</div>
+                <div class="vocab-example">Te tengo mucho cariño.</div>
+              </div>
+              <div class="vocab-item">
+                <div class="vocab-word">viajar</div>
+                <div class="vocab-meaning">旅行</div>
+                <div class="vocab-example">Quiero viajar contigo.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">Luna y Gabi</div>
+        <p class="footer-text">我们的小小宇宙 · 由我们一起完成</p>
+        <div class="footer-hearts">
+          <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const startDate = new Date(2023, 9, 1);
+    const today = new Date();
+    const days = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+    document.getElementById('days').textContent = days + ' 天';
+  </script>
+</body>
+</html>
