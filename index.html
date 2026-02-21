@@ -6,7 +6,7 @@
   <title>Luna y Gabi - 我们的故事</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;600&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --rose-deep: #c4727a;
@@ -58,7 +58,7 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      opacity: 0.4;
+      opacity: 0.15;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
       z-index: 9999;
     }
@@ -172,7 +172,22 @@
     .hero-title span {
       display: block;
       font-style: italic;
-      color: var(--rose-deep);
+      background: linear-gradient(135deg, var(--rose-deep) 0%, var(--gold) 50%, var(--rose-soft) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+    }
+
+    .hero-title span::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
     }
 
     .hero-subtitle {
@@ -234,10 +249,37 @@
     }
 
     .meta-value {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px;
-      font-weight: 600;
-      color: var(--rose-deep);
+      font-family: 'Times New Roman', serif;
+      font-size: 28px;
+      font-weight: 400;
+      background: linear-gradient(135deg, var(--rose-deep) 0%, var(--gold) 50%, var(--rose-deep) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 2px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .meta-value::before {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--rose-deep) 0%, var(--gold) 50%, var(--rose-deep) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: blur(8px);
+      opacity: 0.4;
+      z-index: -1;
+    }
+
+    .meta-value .number {
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum";
     }
 
     @keyframes fadeInUp {
@@ -361,7 +403,7 @@
     }
 
     .timeline-date {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Times New Roman', serif;
       font-size: 18px;
       color: var(--gold);
       margin-bottom: 8px;
@@ -512,20 +554,36 @@
     }
 
     .anniversary-card .date {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Times New Roman', serif;
       font-size: 18px;
       color: var(--gold);
       margin-bottom: 8px;
     }
 
     .anniversary-card .countdown {
-      font-size: 14px;
-      color: var(--rose-deep);
-      padding: 8px 20px;
-      background: var(--rose-whisper);
+      font-family: 'Times New Roman', serif;
+      font-size: 16px;
+      font-weight: 500;
+      background: linear-gradient(135deg, var(--rose-deep) 0%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      padding: 10px 24px;
+      background-color: var(--rose-whisper);
+      background-image: linear-gradient(135deg, var(--rose-whisper) 0%, #fff 100%);
       border-radius: 100px;
       display: inline-block;
       margin-top: 12px;
+      letter-spacing: 1px;
+      box-shadow: inset 0 2px 4px rgba(196, 114, 122, 0.1), 0 4px 12px rgba(196, 114, 122, 0.15);
+      border: 1px solid rgba(196, 114, 122, 0.2);
+    }
+
+    .anniversary-card .countdown .number {
+      font-family: 'Times New Roman', serif;
+      font-weight: 600;
+      font-size: 18px;
+      font-variant-numeric: tabular-nums;
     }
 
     .wish-grid {
@@ -832,20 +890,48 @@
       </div>
       <div class="photo-grid">
         <div class="photo-item">
-          <div style="width:100%;height:100%;background:linear-gradient(135deg,#e8b4b8,#c9c5e8)"></div>
-          <span>第一次旅行</span>
+          <img src="images/first-photo-luna.jpeg" alt="Gabi给Luna拍的第一张照片">
+          <span>Gabi给Luna拍的第一张照片</span>
         </div>
         <div class="photo-item">
-          <div style="width:100%;height:100%;background:linear-gradient(135deg,#c9c5e8,#9caf88)"></div>
-          <span>某个周末</span>
+          <img src="images/259eb4182ee34583cd58a7fb0f5836f7.jpeg" alt="小碧池边的第一张合照">
+          <span>小碧池边的第一张合照</span>
         </div>
         <div class="photo-item">
-          <div style="width:100%;height:100%;background:linear-gradient(135deg,#9caf88,#e8b4b8)"></div>
-          <span>一起看电影</span>
+          <img src="images/IMG_8421.jpeg" alt="宇宙第一摄影师的"洪荒"之作">
+          <span>宇宙第一摄影师的"洪荒"之作</span>
         </div>
         <div class="photo-item">
-          <div style="width:100%;height:100%;background:linear-gradient(135deg,#d4b896,#e8b4b8)"></div>
-          <span>纪念日</span>
+          <img src="images/IMG_9617.jpeg" alt="没有留下的底片留在了我心中">
+          <span>没有留下的底片留在了我心中</span>
+        </div>
+        <div class="photo-item">
+          <img src="images/IMG_9647.jpeg" alt="敬我的老师傅">
+          <span>敬我的老师傅</span>
+        </div>
+        <div class="photo-item">
+          <img src="images/7EAEB806-35F9-4837-9620-88BFCC113EB0.jpeg" alt="一起迎接2026">
+          <span>一起迎接2026</span>
+        </div>
+        <div class="photo-item">
+          <img src="images/f97ed46534b6c01254c3a2ab3cec8cd9.jpeg" alt="我带个弟弟？">
+          <span>"我带个弟弟？"</span>
+        </div>
+        <div class="photo-item">
+          <img src="images/IMG_9839.jpeg" alt="Mi princesa">
+          <span>Mi princesa</span>
+        </div>
+        <div class="photo-item">
+          <img src="images/IMG_9971.jpeg" alt="限时情侣服之没有S码">
+          <span>限时情侣服之没有S码</span>
+        </div>
+        <div class="photo-item">
+          <img src="images/Picsew_20260221203224.jpeg" alt="两个傻瓜">
+          <span>两个傻瓜</span>
+        </div>
+        <div class="photo-item">
+          <img src="images/c54e006e0c0bc1a64c2b595f5442b6e6.jpeg" alt="我们熟悉的一切">
+          <span>我们熟悉的一切</span>
         </div>
       </div>
     </section>
@@ -934,10 +1020,10 @@
               <h4>¿Qué hora es?</h4>
               <p>Son las ocho.</p>
             </div>
-            <div class="ask-box">
-              <input type="text" placeholder="你的昵称" maxlength="20">
-              <textarea placeholder="写下你的问题…" rows="3" maxlength="200"></textarea>
-              <button type="button">保存问题</button>
+            <div class="ask-box" id="ask-box">
+              <input type="text" id="ask-name" placeholder="你的昵称" maxlength="20">
+              <textarea id="ask-question" placeholder="写下你的西语问题…" rows="3" maxlength="200"></textarea>
+              <button type="button" id="ask-submit">提交问题</button>
             </div>
           </div>
           <div class="spanish-card">
@@ -962,6 +1048,8 @@
     <p>我们的小小宇宙 · 由我们一起完成 ♡</p>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js"></script>
   <script>
     const startDate = new Date(2025, 9, 7, 17, 27, 0);
     const timerEl = document.getElementById('days');
