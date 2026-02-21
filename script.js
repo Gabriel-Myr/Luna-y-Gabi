@@ -188,7 +188,10 @@ const submitQuestionToSupabase = async (name, question) => {
 const applyData = (data) => {
   console.log("applyData called with data:", data);
   document.querySelector(".hero-badge").textContent = data.couple.names;
-  document.querySelector(".hero-title").textContent = data.couple.heroTitle;
+  // 只更新主标题文本，保留 span 子元素
+  const heroTitle = document.querySelector(".hero-title");
+  const span = heroTitle.querySelector("span");
+  heroTitle.childNodes[0].textContent = data.couple.heroTitle;
   document.querySelector(".hero-subtitle").textContent = data.couple.heroSubtitle;
   document.title = `恋爱记录 · ${data.couple.names}`;
 
@@ -316,9 +319,8 @@ const applyData = (data) => {
 fetch("data.json")
   .then((response) => response.json())
   .then(applyData)
-  .catch(() => {
-    const note = document.querySelector(".hero-subtitle");
-    if (note) note.textContent = "数据加载失败，请检查 data.json。";
+  .catch((err) => {
+    console.log("data.json 加载失败，使用页面默认内容:", err);
   });
 
 // 独立初始化问答功能，不依赖data.json
